@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users'
+
+    'users.apps.UsersConfig' #注册子应用
 ]
 
 MIDDLEWARE = [
@@ -124,9 +125,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+# LANGUAGE_CODE = 'en-us'
+#
+# TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'zh-hans' # 使用中国语言
+TIME_ZONE = 'Asia/Shanghai' # 使用中国上海时间
 
 USE_I18N = True
 
@@ -211,7 +214,6 @@ LOGGING = {
     }
 }
 import logging
-
 # 创建日志记录器
 logger = logging.getLogger('django')
 # 输出日志
@@ -224,4 +226,4 @@ logger.error('测试logging模块error')
 
 
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User' #指定用户模型类
