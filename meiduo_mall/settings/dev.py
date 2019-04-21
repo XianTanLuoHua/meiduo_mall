@@ -39,14 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'users.apps.UsersConfig' #注册子应用
+    'users.apps.UsersConfig', #注册子应用
+    'contents.apps.ContentsConfig',
+    'Verifications.apps.VerificationsConfig',
+
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -71,7 +75,7 @@ TEMPLATES = [
     },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'meiduo_mall/../templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -162,6 +166,14 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
+    "verify_code": {  # 验证码
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session"
@@ -213,13 +225,13 @@ LOGGING = {
         },
     }
 }
-import logging
-# 创建日志记录器
-logger = logging.getLogger('django')
-# 输出日志
-logger.debug('测试logging模块debug')
-logger.info('测试logging模块info')
-logger.error('测试logging模块error')
+# import logging
+# # 创建日志记录器
+# logger = logging.getLogger('django')
+# # 输出日志
+# logger.debug('测试logging模块debug')
+# logger.info('测试logging模块info')
+# logger.error('测试logging模块error')
 
 
 
